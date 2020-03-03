@@ -35,17 +35,20 @@ const searchOrderNumber = () => {
 }
 
 const run = () => {
-  alert(document.domain)
-  // If the invoice id is already here we simply create a link
-  const invoiceIdField = document.getElementById('custom-invoice-id')
-  if (invoiceIdField.value === '') {
-    const order = searchOrderNumber()
-    if (order != 0) {
-      addInvoiceId(order)
-      createOrderLink(order)
-      console.log(` we found ${order}`)
-    } else console.log('we found nothing')
-  } else createOrderLink(invoiceIdField.value)
+  let domain = document.domain
+
+  if (domain === 'secure.helpscout.net') {
+    // If the invoice id is already here we simply create a link
+    const invoiceIdField = document.getElementById('custom-invoice-id')
+    if (invoiceIdField.value === '') {
+      const order = searchOrderNumber()
+      if (order != 0) {
+        addInvoiceId(order)
+        createOrderLink(order)
+        console.log(` we found ${order}`)
+      } else console.log('we found nothing')
+    } else createOrderLink(invoiceIdField.value)
+  }
 }
 
 run()
